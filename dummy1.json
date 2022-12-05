@@ -1,0 +1,12 @@
+{
+  "data": [
+    {
+      "gameId": "juhong",
+      "startAt": "2212051130",
+      "finishAt": "2212051500",
+      "prize": "3000",
+      "joinFeeAmount": "1000",
+      "betFeeAmount": "500"
+    }
+  ]
+}
