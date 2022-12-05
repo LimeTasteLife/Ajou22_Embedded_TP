@@ -1,14 +1,14 @@
-import { ethers } from 'ethers';
-import Web3Modal from 'web3modal';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { ethers } from "ethers";
+import Web3Modal from "web3modal";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-import { testAddress } from '../config';
-import Test from '../artifacts/contracts/Test.sol/Test.json';
+// import { testAddress } from "../config";
+import Test from "../artifacts/contracts/Test.sol/Test.json";
 
 export default function myApp({ pageProps }) {
   const [formInput, updateFormInput] = useState({
-    userId: '',
+    userId: "",
   });
   const router = useRouter();
 
@@ -25,7 +25,7 @@ export default function myApp({ pageProps }) {
     // registration 중복은 어떻게 해결할까?
     await transaction.wait();
 
-    router.replace('/');
+    router.replace("/");
   }
 
   return (
