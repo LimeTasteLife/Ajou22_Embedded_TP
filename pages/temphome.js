@@ -1,4 +1,4 @@
-import GameList from "../components/gameList";
+// import GameList from "../components/gameList";
 import Usrgame from "../components/ctedgame";
 import React, { useEffect, useState } from "react";
 import dummy from "../dummy1.json";
