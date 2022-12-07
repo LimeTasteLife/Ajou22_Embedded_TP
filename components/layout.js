@@ -1,25 +1,25 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const router = useRouter();
 
   const menuItems = [
     {
-      href: '/',
-      title: '홈',
+      href: "/",
+      title: "홈",
     },
     {
-      href: '/make-game',
-      title: '게임 제작',
+      href: "/make-game",
+      title: "게임 제작",
     },
     {
-      href: '/manage-game',
-      title: '게임 관리',
+      href: "/manage-game",
+      title: "게임 관리",
     },
     {
-      href: '/participating-now',
-      title: '참가중인 게임',
+      href: "/participating-now",
+      title: "참가중인 게임",
     },
   ];
 
@@ -36,8 +36,7 @@ export default function Layout({ children }) {
                 <a>login</a>
               </Link>
             </div>
-          </button>
-  */}
+          </button>*/}
           <button className="flex justify-end bg-purple-500">
             <div>
               <Link href="/sign-registration">
@@ -56,7 +55,7 @@ export default function Layout({ children }) {
                   <Link href={href}>
                     <a
                       className={`flex p-2 bg-fuchsia-200 rounded hover:bg-fuchsia-400 cursor-pointer ${
-                        router.asPath === href && 'bg-fuchsia-600 text-red'
+                        router.asPath === href && "bg-fuchsia-600 text-red"
                       }`}
                     >
                       {title}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Ctedgame from "../components/ctedgame";
+import Ctedgame from "../ctedgame";
 
 export default function Home({ results }) {
   return (

@@ -5,6 +5,7 @@ import Web3Modal from "web3modal";
 
 import { testAddress } from "../config";
 import Test from "../artifacts/contracts/Test.sol/Test.json";
+import App from "../components/App";
 
 export default function MakeGame() {
   const [formInput, updateFormInput] = useState({
@@ -17,41 +18,41 @@ export default function MakeGame() {
   });
   const router = useRouter();
 
-  // async function makeGame() {
-  //   const web3Modal = new Web3Modal();
-  //   const connection = await web3Modal.connect();
-  //   const provider = new ethers.providers.Web3Provider(connection);
-  //   const signer = provider.getSigner();
+  async function makeGame() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
 
-  //   const prize = ethers.utils.parseUnits(formInput.prize, "ether");
-  //   const joinFeeAmount = ethers.utils.parseUnits(
-  //     formInput.joinFeeAmount,
-  //     "ether"
-  //   );
-  //   const betFeeAmount = ethers.utils.parseUnits(
-  //     formInput.betFeeAmount,
-  //     "ether"
-  //   );
-  //   let contract = new ethers.Contract(testAddress, Test.abi, signer);
+    const prize = ethers.utils.parseUnits(formInput.prize, "ether");
+    const joinFeeAmount = ethers.utils.parseUnits(
+      formInput.joinFeeAmount,
+      "ether"
+    );
+    const betFeeAmount = ethers.utils.parseUnits(
+      formInput.betFeeAmount,
+      "ether"
+    );
+    let contract = new ethers.Contract(testAddress, Test.abi, signer);
 
-  //   let transaction = await contract.makeGame(
-  //     parseInt(formInput.gameId),
-  //     parseInt(formInput.startAt),
-  //     parseInt(formInput.finishAt),
-  //     joinFeeAmount,
-  //     betFeeAmount,
-  //     {
-  //       value: prize,
-  //     }
-  //   );
-  //   await transaction.wait();
+    let transaction = await contract.makeGame(
+      parseInt(formInput.gameId),
+      parseInt(formInput.startAt),
+      parseInt(formInput.finishAt),
+      joinFeeAmount,
+      betFeeAmount,
+      {
+        value: prize,
+      }
+    );
+    await transaction.wait();
 
-  //   router.replace("/");
-  // }
+    router.replace("/");
+  }
 
   return (
     <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col pb-12">
+      <div className="w-1/2 flex flex-col pb-12 ">
         <input
           placeholder="게임 ID"
           className="mt-8 border rounded p-4"
@@ -94,13 +95,15 @@ export default function MakeGame() {
             updateFormInput({ ...formInput, betFeeAmount: e.target.value })
           }
         />
-        {/* <button
+        <button
           onClick={makeGame}
           className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
         >
           게임 생성
-        </button> */}
-        <button></button>
+        </button>
+      </div>
+      <div>
+        <App />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 // import GameList from "../components/gameList";
-import Usrgame from "../components/ctedgame";
+import Usrgame from "../ctedgame";
 import React, { useEffect, useState } from "react";
 import dummy from "../dummy1.json";
 

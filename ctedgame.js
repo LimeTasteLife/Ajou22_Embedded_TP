@@ -1,5 +1,5 @@
 // import { Axios } from "axios";
-import dummy from "../dummy.json";
+import dummy from "./dummy.json";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 

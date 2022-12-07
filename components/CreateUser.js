@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function CreateUser({
   gameId,
@@ -14,47 +15,50 @@ function CreateUser({
     <div>
       <input
         name="gameId"
+        value={gameId}
         placeholder="gameId"
         onChange={onChange}
-        value={gameId}
       />
       <br />
       <input
         name="startAt"
+        value={startAt}
         placeholder="startAt"
         onChange={onChange}
-        value={startAt}
       />
       <br />
       <input
         name="finishAt"
+        value={finishAt}
         placeholder="finishAt"
         onChange={onChange}
-        value={finishAt}
       />
       <br />
       <input
         name="prize"
+        value={prize}
         placeholder="prize"
         onChange={onChange}
-        value={prize}
       />
       <br />
       <input
         name="joinFeeAmount"
+        value={joinFeeAmount}
         placeholder="joinFeeAmount"
         onChange={onChange}
-        value={joinFeeAmount}
       />
       <br />
       <input
         name="betFeeAmount"
+        value={betFeeAmount}
         placeholder="betFeeAmount"
         onChange={onChange}
-        value={betFeeAmount}
       />
       <br />
-      <button onClick={onCreate}>등록</button>
+      <button onClick={onCreate}>
+        {/* <Link href="../pages/manage-game" /> */}
+        등록
+      </button>
     </div>
   );
 }
