@@ -1,41 +1,57 @@
 import React from "react";
 
-function CreateUser({ username, email, onChange, onCreate }) {
+function CreateUser({
+  gameId,
+  startAt,
+  finishAt,
+  prize,
+  joinFeeAmount,
+  betFeeAmount,
+  onChange,
+  onCreate,
+}) {
   return (
     <div>
       <input
-        name="username"
+        name="gameId"
         placeholder="gameId"
         onChange={onChange}
-        value={username}
+        value={gameId}
       />
       <br />
       <input
-        name="staring"
+        name="startAt"
         placeholder="startAt"
         onChange={onChange}
-        value={email}
+        value={startAt}
       />
       <br />
       <input
-        name="finishing"
+        name="finishAt"
         placeholder="finishAt"
         onChange={onChange}
-        value={email}
+        value={finishAt}
       />
       <br />
       <input
         name="prize"
         placeholder="prize"
         onChange={onChange}
-        value={email}
+        value={prize}
       />
       <br />
       <input
-        name="EntryFee"
+        name="joinFeeAmount"
         placeholder="joinFeeAmount"
         onChange={onChange}
-        value={email}
+        value={joinFeeAmount}
+      />
+      <br />
+      <input
+        name="betFeeAmount"
+        placeholder="betFeeAmount"
+        onChange={onChange}
+        value={betFeeAmount}
       />
       <br />
       <button onClick={onCreate}>등록</button>
@@ -44,10 +60,3 @@ function CreateUser({ username, email, onChange, onCreate }) {
 }
 
 export default CreateUser;
-
-// gameId: "",
-// startAt: "",
-// finishAt: "",
-// prize: "",
-// joinFeeAmount: "",
-// betFeeAmount: "",
