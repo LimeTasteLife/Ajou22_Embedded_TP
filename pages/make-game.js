@@ -103,7 +103,16 @@ export default function MakeGame() {
         </button>
       </div>
       <div>
-        <App />
+        {/* <CreateUser
+          gameId={gameId}
+          startAt={startAt}
+          finishAt={finishAt}
+          prize={prize}
+          joinFeeAmount={joinFeeAmount}
+          betFeeAmount={betFeeAmount}
+          onChange={onChange}
+          onCreate={onCreate}
+        /> */}
       </div>
     </div>
   );

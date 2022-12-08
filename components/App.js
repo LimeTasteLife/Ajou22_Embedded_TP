@@ -49,6 +49,16 @@ function App() {
       joinFeeAmount: "1200",
       betFeeAmount: "500",
     },
+
+    {
+      // id: 3,
+      gameId: "junseng12",
+      startAt: "221111",
+      finishAt: "221115",
+      prize: "7000",
+      joinFeeAmount: "1200",
+      betFeeAmount: "500",
+    },
   ]);
 
   // const nextId = useRef(4);
@@ -74,21 +84,20 @@ function App() {
     });
     // nextId.current += 1;
   };
-  return (
-    <>
-      <CreateUser
-        gameId={gameId}
-        startAt={startAt}
-        finishAt={finishAt}
-        prize={prize}
-        joinFeeAmount={joinFeeAmount}
-        betFeeAmount={betFeeAmount}
-        onChange={onChange}
-        onCreate={onCreate}
-      />
-      <UserList users={users} />
-    </>
-  );
+  return users;
+  // <>
+  // <CreateUser
+  //   gameId={gameId}
+  //   startAt={startAt}
+  //   finishAt={finishAt}
+  //   prize={prize}
+  //   joinFeeAmount={joinFeeAmount}
+  //   betFeeAmount={betFeeAmount}
+  //   onChange={onChange}
+  //   onCreate={onCreate}
+  // />
+  //   <UserList users={users} />
+  // </>
 }
 
 export default App;
