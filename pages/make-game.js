@@ -51,8 +51,8 @@ export default function MakeGame() {
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col pb-12 ">
+    <div className="flex justify-center pl-52">
+      <div className="w-2/5 flex flex-col pb-12 ">
         <input
           placeholder="게임 ID"
           className="mt-8 border rounded p-4"

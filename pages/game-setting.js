@@ -10,7 +10,7 @@ export default function Gameinformation({ props }) {
 
   return (
     <div className="flex w-5/6 h-full float-right flex-col justify-center items-center pl-6">
-      <h1 className="text-4xl mb-5 font-bold">Game Information</h1>
+      <h1 className="text-4xl mb-5 font-bold">Setting Game</h1>
       <div className="w-full px-10">주최자: 받아올 정보</div>
       <div className="w-full px-10">
         <div type="bar" className={Mainbarstyles.bar}>
@@ -95,24 +95,27 @@ export default function Gameinformation({ props }) {
           </div>
         </div>
 
-        {/* 원래 게임 참가를 누르면 참가중인 게임에 포함시켜야 하는데, 해당 js부분 이해 못해서 게임 관리 페이지로 넘어가도록 설정함 */}
         <div className="w-full h-20">
-          <div className="w-1/2 float-left p-10 h-full">
-            <div className="w-full text-center">
-              <Link href={"./participating-now"}>
+          <div className="w-1/2  float-left p-10 h-full">
+            <div className="w-auto text-center">
+              <Link href={"./manage-game"}>
                 <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
-                  게임참가
+                  삭제하기
+                  {/* (관리 리스트에서 해당 게임 제거 설정할지 생각 X) */}
                 </div>
               </Link>
             </div>
           </div>
         </div>
-        {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
+
         <div className="w-full h-20">
-          <div className="w-1/2 float-left p-10 h-full">
-            <div className="w-full text-center">
-              <Link href={"./temphome2"}>
-                <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>확인</div>
+          <div className="w-1/2  float-left p-10 h-full">
+            <div className="w-auto text-center">
+              <Link href={"/manage-game"}>
+                <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
+                  돌아가기
+                  {/* (어디로 돌아가며, 어떻게 설정할지 생각 X) */}
+                </div>
               </Link>
             </div>
           </div>
