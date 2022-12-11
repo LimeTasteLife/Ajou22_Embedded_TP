@@ -1,0 +1,43 @@
+{
+  "days": [
+    {
+      "gameId": "juhong",
+      "startAt": "2212051130"
+    },
+    {
+      "gameId": "junseung",
+      "startAt": "2212051500"
+    },
+    {
+      "gameId": "juhong",
+      "startAt": "2301050845"
+    }
+  ],
+
+  "contents": [
+    {
+      "gameId": "juhong",
+      "startAt": "2212051130",
+      "finishAt": "2212051500",
+      "prize": "3000",
+      "joinFeeAmount": "1000",
+      "betFeeAmount": "500"
+    },
+    {
+      "gameId": "junseung",
+      "startAt": "2212051500",
+      "finishAt": "2212061830",
+      "prize": "4000",
+      "joinFeeAmount": "1500",
+      "betFeeAmount": "800"
+    },
+    {
+      "gameId": "juhong",
+      "startAt": "2301050845",
+      "finishAt": "2301061025",
+      "prize": "7000",
+      "joinFeeAmount": "800",
+      "betFeeAmount": "500"
+    }
+  ]
+}

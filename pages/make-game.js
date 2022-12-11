@@ -1,19 +1,20 @@
-import { useState } from 'react';
-import { ethers } from 'ethers';
-import { useRouter } from 'next/router';
-import Web3Modal from 'web3modal';
+import { useState } from "react";
+import { ethers } from "ethers";
+import { useRouter } from "next/router";
+import Web3Modal from "web3modal";
 
-import { testAddress } from '../config';
-import Test from '../artifacts/contracts/Test.sol/Test.json';
+import { testAddress } from "../config";
+import Test from "../artifacts/contracts/Test.sol/Test.json";
+import App from "../components/App";
 
 export default function MakeGame() {
   const [formInput, updateFormInput] = useState({
-    gameId: '',
-    startAt: '',
-    finishAt: '',
-    prize: '',
-    joinFeeAmount: '',
-    betFeeAmount: '',
+    gameId: "",
+    startAt: "",
+    finishAt: "",
+    prize: "",
+    joinFeeAmount: "",
+    betFeeAmount: "",
   });
   const router = useRouter();
 
@@ -23,14 +24,14 @@ export default function MakeGame() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    const prize = ethers.utils.parseUnits(formInput.prize, 'ether');
+    const prize = ethers.utils.parseUnits(formInput.prize, "ether");
     const joinFeeAmount = ethers.utils.parseUnits(
       formInput.joinFeeAmount,
-      'ether'
+      "ether"
     );
     const betFeeAmount = ethers.utils.parseUnits(
       formInput.betFeeAmount,
-      'ether'
+      "ether"
     );
     let contract = new ethers.Contract(testAddress, Test.abi, signer);
 
@@ -46,12 +47,12 @@ export default function MakeGame() {
     );
     await transaction.wait();
 
-    router.replace('/');
+    router.replace("/");
   }
 
   return (
-    <div className="flex justify-center">
-      <div className="w-1/2 flex flex-col pb-12">
+    <div className="flex justify-center pl-52">
+      <div className="w-2/5 flex flex-col pb-12 ">
         <input
           placeholder="게임 ID"
           className="mt-8 border rounded p-4"
@@ -100,6 +101,18 @@ export default function MakeGame() {
         >
           게임 생성
         </button>
+      </div>
+      <div>
+        {/* <CreateUser
+          gameId={gameId}
+          startAt={startAt}
+          finishAt={finishAt}
+          prize={prize}
+          joinFeeAmount={joinFeeAmount}
+          betFeeAmount={betFeeAmount}
+          onChange={onChange}
+          onCreate={onCreate}
+        /> */}
       </div>
     </div>
   );

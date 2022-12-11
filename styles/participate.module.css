@@ -1,0 +1,131 @@
+.participatebox {
+  --antd-wave-shadow-color: #1890ff;
+  font-variant: tabular-nums;
+  font-feature-settings: "tnum";
+  line-height: 1.2rem;
+  text-rendering: optimizelegibility;
+  font-kerning: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+  -webkit-box-direction: normal;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  font-weight: 700;
+  text-size-adjust: none;
+  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  font-size: 1.2rem;
+  color: rgb(238, 238, 238);
+  box-sizing: border-box;
+  margin-bottom: 6px;
+  background: rgb(33, 39, 50);
+  border: 1px solid rgb(48, 59, 73);
+  overflow: hidden;
+  border-radius: 0px;
+}
+
+.time {
+  --antd-wave-shadow-color: #1890ff;
+  font-variant: tabular-nums;
+  font-feature-settings: "tnum";
+  text-rendering: optimizelegibility;
+  font-kerning: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+  -webkit-box-direction: normal;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  font-weight: 700;
+  text-size-adjust: none;
+  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+  color: rgb(238, 238, 238);
+  box-sizing: border-box;
+  z-index: 1;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  line-height: 4rem;
+  padding: 0px 0px 0px 14px;
+}
+
+.beatscreen {
+  --antd-wave-shadow-color: #1890ff;
+  font-variant: tabular-nums;
+  font-feature-settings: "tnum";
+  line-height: 1.2rem;
+  text-rendering: optimizelegibility;
+  font-kerning: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+  -webkit-box-direction: normal;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  font-weight: 700;
+  text-size-adjust: none;
+  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+  color: rgb(238, 238, 238);
+  box-sizing: border-box;
+  position: relative;
+  border-radius: 0px 0px 15px 15px;
+  padding-bottom: 3px;
+}
+
+.betting {
+  --antd-wave-shadow-color: #1890ff;
+  font-variant: tabular-nums;
+  font-feature-settings: "tnum";
+  line-height: 1.2rem;
+  text-rendering: optimizelegibility;
+  font-kerning: none;
+  -webkit-font-smoothing: antialiased;
+  cursor: auto;
+  -webkit-box-direction: normal;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  font-weight: 700;
+  text-size-adjust: none;
+  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
+    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  margin-bottom: 0px;
+  font-size: 1.2rem;
+  color: rgb(238, 238, 238);
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0px 14px;
+}
+
+/* .list {
+  visibility: visible;
+  box-sizing: border-box;
+  min-height: auto;
+  z-index: auto;
+  -webkit-text-stroke: 1px transparent;
+  -webkit-text-size-adjust: 100%;
+  border: 0;
+  border-color: inherit;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-align: inherit;
+  text-indent: 0;
+  text-shadow: none;
+  vertical-align: inherit;
+  bottom: 0;
+  contain: strict;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+} */
