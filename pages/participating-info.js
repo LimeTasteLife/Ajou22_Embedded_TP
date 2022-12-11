@@ -5,7 +5,7 @@ import Buttonstyle from "../styles/button.module.css";
 import InfobarStyle from "../styles/mainbar.module.css";
 import Mainbarstyles from "../styles/mainbar.module.css";
 
-export default function Gameinformation() {
+export default function participatinginfor() {
   const ptpgame = [
     {
       gameId: "dolor",
@@ -193,26 +193,26 @@ export default function Gameinformation() {
             </div>
           </div>
 
+          {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
           <div className="w-1/2 h-20 float-left">
             <div className="p-10 h-full">
               <div className="w-full text-center">
-                {/* delete 기능 구현 */}
-                <Link href={"./participating-now"}>
-                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
-                    참여하기
+                <Link href={"./partificpaing-now"}>
+                  <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
+                    확인
                   </div>
                 </Link>
               </div>
             </div>
           </div>
 
-          {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
           <div className="w-1/2 h-20 float-left">
             <div className="p-10 h-full">
               <div className="w-full text-center">
-                <Link href={"/"}>
-                  <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
-                    확인
+                {/* delete 기능 구현 */}
+                <Link href={"./participating-now"}>
+                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
+                    게임나가기
                   </div>
                 </Link>
               </div>

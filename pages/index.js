@@ -223,7 +223,7 @@ export default function Home() {
           id="Game Management Upper"
         >
           {/* 해당 페이지 제목 */}
-          <div className="rounded-3xl bg-gray-700 w-full text-5xl font-bold py-3 px-5">
+          <div className="rounded-3xl bg-indigo-900 w-full text-5xl font-bold py-3 px-5 text-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -244,21 +244,21 @@ export default function Home() {
             id="Game list Upper(옵션 - 역삼각형 클릭)"
           >
             <button
-              className="rounded-full bg-gray-200 w-1/3 float-left p-3 text-center text-lg m-5"
+              className="rounded-full bg-pink-600 w-1/3 float-left p-3 text-center text-lg m-5"
               //onclick 이벤트 추가
             >
               최근 순
             </button>
-            <button className="rounded-full bg-gray-400 w-1/3 float-left p-3 text-center text-lg m-5">
-              베팅 금액 순
+            <button className="rounded-full bg-purple-700 w-1/3 float-left p-3 text-center text-lg m-5">
+              상금 순
             </button>
-            <button className="rounded-full bg-gray-600 w-1/3 float-left p-3 text-center text-lg m-5">
-              마감 일자 순
+            <button className="rounded-full bg-indigo-600 w-1/3 float-left p-3 text-center text-lg m-5">
+              베팅금액 순
             </button>
           </div>
 
           <div
-            className="rounded-xl bg-gray-200 w-3/4 h-4/6 p-5 m-5 overflow-y-auto absolute"
+            className="rounded-xl bg-blue-400 w-3/4 h-4/6 p-5 m-5 overflow-y-auto absolute"
             id="Game list Lower(스크롤 포함)"
           >
             <div className={Mainbarstyles.mainbarwrap}>
