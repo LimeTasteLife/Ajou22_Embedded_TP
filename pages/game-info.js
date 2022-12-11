@@ -106,8 +106,6 @@ export default function Gameinformation() {
           ParticipateStyle.beatscreen
         } ${"fixed w-300 justify-center"}`}
       >
-        {/* 중앙 쪽으로 재정렬할 계획 */}
-        <div>FC 안도라 vs. 레가네스</div>
         {/* m-auto 는 수평의 중앙으로 정렬하는 역할 */}
         <div
           id="1팀 2팀 명단"
@@ -122,7 +120,7 @@ export default function Gameinformation() {
           />
         </div>
 
-        <div id="1팀 2팀 명단 화면" className="w-full h-96 pt-10 ">
+        <div id="1팀 2팀 명단 화면" className="w-full h-80 pt-4">
           <div className="w-full h-10 text-center">
             <div className="w-1/2 h-10 text-center float-left pt-4">
               1팀 명단
@@ -133,7 +131,7 @@ export default function Gameinformation() {
           </div>
           <div
             id="1팀 명단"
-            className="bg-indigo-600 w-2/5 h-64 absolute rounded-3xl overflow-y-auto mx-16"
+            className="bg-indigo-600 w-2/5 h-64 float-left rounded-3xl overflow-y-auto mx-16"
           >
             <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
               {ptpgame[0].gameId}
@@ -173,11 +171,35 @@ export default function Gameinformation() {
           </div>
         </div>
 
-        <div
-          id="상금 및 베팅 정보, 확인 및 나가기 버튼 container"
-          className="h-320"
-        >
-          <div id="상금 정보" className="h-full mx-16">
+        <div className="w-full h-20">
+          <div className="w-1/2 h-20 float-left ">
+            <div className="px-3 h-full">
+              <div className="w-full text-center">
+                {/* delete 기능 구현 */}
+                <Link href={"./participating-now"}>
+                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
+                    1팀 참여하기
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="w-1/2 h-20 float-left">
+            <div className="px-3 h-full">
+              <div className="w-full text-center">
+                {/* delete 기능 구현 */}
+                <Link href={"./participating-now"}>
+                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
+                    2팀 참여하기
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="상금 및 베팅 정보, 확인 및 나가기 버튼 container">
+          <div id="상금 정보" className=" mx-16">
             <div type="bar" className={Mainbarstyles.bar}>
               <div type="bar" className={InfobarStyle.bar}>
                 <div>상금: (prize)</div>
@@ -185,7 +207,7 @@ export default function Gameinformation() {
             </div>
           </div>
 
-          <div id="베팅 정보" className="h-full mx-16 py-3">
+          <div id="베팅 정보" className=" mx-16 py-3">
             <div type="bar" className={Mainbarstyles.bar}>
               <div type="bar" className={InfobarStyle.bar}>
                 <div>베팅액: (betting)</div>
@@ -193,25 +215,12 @@ export default function Gameinformation() {
             </div>
           </div>
 
-          <div className="w-1/2 h-20 float-left">
-            <div className="p-10 h-full">
-              <div className="w-full text-center">
-                {/* delete 기능 구현 */}
-                <Link href={"./participating-now"}>
-                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
-                    참여하기
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
           {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
-          <div className="w-1/2 h-20 float-left">
-            <div className="p-10 h-full">
+          <div className="w-full h-auto float-left">
+            <div className="p-2">
               <div className="w-full text-center">
                 <Link href={"/"}>
-                  <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
+                  <div className={`${Buttonstyle.btncyan} ${"w-1/5"}`}>
                     확인
                   </div>
                 </Link>
