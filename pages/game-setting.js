@@ -95,7 +95,23 @@ export default function Gameinformation({ props }) {
           </div>
         </div>
 
-        <div className="w-full h-20">
+        {/* 마감버튼 마다 onclick 이벤트 추가 */}
+        <div className="flex w-full" id="Game list Upper(옵션 - 역삼각형 클릭)">
+          <button
+            className="rounded-full bg-yellow-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold"
+            //onclick 이벤트 추가
+          >
+            참가 마감
+          </button>
+          <button className="rounded-full bg-green-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold">
+            중간 마감
+          </button>
+          <button className="rounded-full bg-blue-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold">
+            베팅 마감
+          </button>
+        </div>
+
+        <div>
           <div className="w-1/2  float-left p-10 h-full">
             <div className="w-auto text-center">
               <Link href={"./manage-game"}>
@@ -106,9 +122,7 @@ export default function Gameinformation({ props }) {
               </Link>
             </div>
           </div>
-        </div>
 
-        <div className="w-full h-20">
           <div className="w-1/2  float-left p-10 h-full">
             <div className="w-auto text-center">
               <Link href={"/manage-game"}>
