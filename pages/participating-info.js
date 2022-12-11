@@ -6,88 +6,8 @@ import InfobarStyle from "../styles/mainbar.module.css";
 import Mainbarstyles from "../styles/mainbar.module.css";
 
 export default function participatinginfor() {
-  const ptpgame = [
-    {
-      gameId: "dolor",
-      startAt: 20245664,
-      finishAt: 20240207,
-      prize: 5402,
-      joinFeeAmount: 563,
-      betFeeAmount: 353,
-    },
-    {
-      gameId: "libero",
-      startAt: 20222348,
-      finishAt: 20241048,
-      prize: 4555,
-      joinFeeAmount: 681,
-      betFeeAmount: 301,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221002,
-      finishAt: 20244849,
-      prize: 4611,
-      joinFeeAmount: 611,
-      betFeeAmount: 334,
-    },
-    {
-      gameId: "adipiscing",
-      startAt: 20230503,
-      finishAt: 20231667,
-      prize: 7847,
-      joinFeeAmount: 977,
-      betFeeAmount: 368,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221523,
-      finishAt: 20226040,
-      prize: 2411,
-      joinFeeAmount: 578,
-      betFeeAmount: 319,
-    },
-    {
-      gameId: "turpis",
-      startAt: 20233506,
-      finishAt: 20226659,
-      prize: 4588,
-      joinFeeAmount: 953,
-      betFeeAmount: 318,
-    },
-    {
-      gameId: "pede",
-      startAt: 20244991,
-      finishAt: 20223622,
-      prize: 3057,
-      joinFeeAmount: 504,
-      betFeeAmount: 395,
-    },
-    {
-      gameId: "donec",
-      startAt: 20221038,
-      finishAt: 20222078,
-      prize: 6687,
-      joinFeeAmount: 716,
-      betFeeAmount: 302,
-    },
-    {
-      gameId: "risus",
-      startAt: 20234988,
-      finishAt: 20235937,
-      prize: 5129,
-      joinFeeAmount: 608,
-      betFeeAmount: 436,
-    },
-    {
-      gameId: "vitae",
-      startAt: 20237872,
-      finishAt: 20246296,
-      prize: 6473,
-      joinFeeAmount: 583,
-      betFeeAmount: 426,
-    },
-  ];
+  //게임에 참여중인 인원 저장하는 list
+  const ptpgame = [];
 
   return (
     <div
@@ -133,6 +53,7 @@ export default function participatinginfor() {
             id="1팀 명단"
             className="bg-indigo-600 w-2/5 h-64 absolute rounded-3xl overflow-y-auto mx-16"
           >
+            {/* merge 한 데이터를 여기다가 1팀 2팀 구분해서 spread해야함 */}
             <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
               {ptpgame[0].gameId}
             </div>

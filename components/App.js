@@ -21,45 +21,7 @@ function App() {
       [name]: value,
     });
   };
-  const [users, setUsers] = useState([
-    {
-      // id: 1,
-      gameId: "velopert",
-      startAt: "220101",
-      finishAt: "220102",
-      prize: "5000",
-      joinFeeAmount: "1000",
-      betFeeAmount: "300",
-    },
-    {
-      // id: 2,
-      gameId: "tester",
-      startAt: "220820",
-      finishAt: "220823",
-      prize: "3000",
-      joinFeeAmount: "500",
-      betFeeAmount: "100",
-    },
-    {
-      // id: 3,
-      gameId: "liz",
-      startAt: "221111",
-      finishAt: "221115",
-      prize: "7000",
-      joinFeeAmount: "1200",
-      betFeeAmount: "500",
-    },
-
-    {
-      // id: 3,
-      gameId: "junseng12",
-      startAt: "221111",
-      finishAt: "221115",
-      prize: "7000",
-      joinFeeAmount: "1200",
-      betFeeAmount: "500",
-    },
-  ]);
+  const [users, setUsers] = useState([]);
 
   // const nextId = useRef(4);
   const onCreate = () => {

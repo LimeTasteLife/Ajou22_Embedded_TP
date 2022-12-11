@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default function Home() {
   //조건부 스타일링 적용 변수
-  const state = "onair";
+  const state = "end";
 
   //   const [count, setCount] = useState(0);
   // const [변수, 변수를 관리하는 함수] = useState(초기값);
@@ -26,128 +26,7 @@ export default function Home() {
   const [loadingState, setLoadingState] = useState("not-loaded");
   useEffect(() => {
     // loadGames(); 이 부분을 주석 처리해서 더미 데이터를 넣어준다.
-    setGames([
-      {
-        gameId: "dolor",
-        startAt: 20245664,
-        finishAt: 20240207,
-        prize: 5402,
-        joinFeeAmount: 563,
-        betFeeAmount: 353,
-      },
-      {
-        gameId: "libero",
-        startAt: 20222348,
-        finishAt: 20241048,
-        prize: 4555,
-        joinFeeAmount: 681,
-        betFeeAmount: 301,
-      },
-      {
-        gameId: "curabitur",
-        startAt: 20221002,
-        finishAt: 20244849,
-        prize: 4611,
-        joinFeeAmount: 611,
-        betFeeAmount: 334,
-      },
-      {
-        gameId: "adipiscing",
-        startAt: 20230503,
-        finishAt: 20231667,
-        prize: 7847,
-        joinFeeAmount: 977,
-        betFeeAmount: 368,
-      },
-      {
-        gameId: "curabitur",
-        startAt: 20221523,
-        finishAt: 20226040,
-        prize: 2411,
-        joinFeeAmount: 578,
-        betFeeAmount: 319,
-      },
-      {
-        gameId: "turpis",
-        startAt: 20233506,
-        finishAt: 20226659,
-        prize: 4588,
-        joinFeeAmount: 953,
-        betFeeAmount: 318,
-      },
-      {
-        gameId: "pede",
-        startAt: 20244991,
-        finishAt: 20223622,
-        prize: 3057,
-        joinFeeAmount: 504,
-        betFeeAmount: 395,
-      },
-      {
-        gameId: "donec",
-        startAt: 20221038,
-        finishAt: 20222078,
-        prize: 6687,
-        joinFeeAmount: 716,
-        betFeeAmount: 302,
-      },
-      {
-        gameId: "risus",
-        startAt: 20234988,
-        finishAt: 20235937,
-        prize: 5129,
-        joinFeeAmount: 608,
-        betFeeAmount: 436,
-      },
-      {
-        gameId: "vitae",
-        startAt: 20237872,
-        finishAt: 20246296,
-        prize: 6473,
-        joinFeeAmount: 583,
-        betFeeAmount: 426,
-      },
-      {
-        gameId: "aliquam",
-        startAt: 20222496,
-        finishAt: 20226160,
-        prize: 2565,
-        joinFeeAmount: 793,
-        betFeeAmount: 428,
-      },
-      {
-        gameId: "in",
-        startAt: 20234844,
-        finishAt: 20245116,
-        prize: 2662,
-        joinFeeAmount: 890,
-        betFeeAmount: 339,
-      },
-      {
-        gameId: "mauris",
-        startAt: 20250111,
-        finishAt: 20222029,
-        prize: 5571,
-        joinFeeAmount: 669,
-        betFeeAmount: 488,
-      },
-      {
-        gameId: "sem",
-        startAt: 20244767,
-        finishAt: 20221120,
-        prize: 1332,
-        joinFeeAmount: 899,
-        betFeeAmount: 447,
-      },
-      {
-        gameId: "a",
-        startAt: 20249734,
-        finishAt: 20248090,
-        prize: 5605,
-        joinFeeAmount: 773,
-        betFeeAmount: 321,
-      },
-    ]);
+    setGames([]);
   }, [games]);
   const router = useRouter();
 
