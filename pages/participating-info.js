@@ -106,8 +106,6 @@ export default function participatinginfor() {
           ParticipateStyle.beatscreen
         } ${"fixed w-300 justify-center"}`}
       >
-        {/* 중앙 쪽으로 재정렬할 계획 */}
-        <div>FC 안도라 vs. 레가네스</div>
         {/* m-auto 는 수평의 중앙으로 정렬하는 역할 */}
         <div
           id="1팀 2팀 명단"

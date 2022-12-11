@@ -167,14 +167,18 @@ export default function Participatingnow({ props }) {
     // </div>
     <div className="w-4/5 h-full float-right">
       <div className="w-full h-20">
-        <h1 className="text-4xl mb-5 font-bold p-6">Participating Game List</h1>
+        <h1 className="text-4xl font-bold p-6 rounded-3xl bg-yellow-400 mr-16">
+          Participating Game List
+        </h1>
       </div>
       {/* <span className="text-7xl">💬</span> */}
       {/* 게임 정보(넣어야함) */}
       <div className="w-full h-full" id="명단 큰 상자">
-        <div className="w-full h-full text-left py-6 px-10">참여 게임 목록</div>
+        <div className="table w-1/5 h-10 font-semibold rounded-xl bg-yellow-600 text-left mt-6 px-10 pt-2 mr-16">
+          참여 게임 목록
+        </div>
         <div
-          className="rounded-xl bg-gray-500 w-3/4 h-4/6 p-5 m-5 overflow-y-auto absolute"
+          className="rounded-xl bg-yellow-900 w-3/4 h-4/6 p-5 m-5 overflow-y-auto absolute"
           id="명단 큰 상자 아랫 부분"
         >
           {games.map((game, i) => (
