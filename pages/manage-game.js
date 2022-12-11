@@ -3,15 +3,11 @@ import Web3Modal from 'web3modal';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import Mainbarstyles from '../styles/mainbar.module.css';
-import Buttonstyle from '../styles/button.module.css';
-// import InfobarStyle from "../styles/mainbar.module.css";
-
 import { gameManagerAddress } from '../config';
 import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json';
 
-//생성한 게임 중에 gameId가 동일한 것들을 보여주고 그 게임들의 설정을 바꿀 수 있어야 함
-export default function ManageGame({ props }) {
+export default function ManageGame({}) {
+  //함수 자체를 그 함수 내 const로 반환해서 사용 가능
   const [mygames, setMygames] = useState([]);
   const [loadingState, setLoadingState] = useState('not-loaded');
   useEffect(() => {
@@ -62,79 +58,28 @@ export default function ManageGame({ props }) {
 
   async function manageGame(gameId) {
     router.replace({
-      pathname: '/manage-game-set',
+      pathname: '/game-info',
       query: { gameId: gameId },
     });
   }
 
   if (loadingState === 'not-loaded' || !mygames.length)
-    return <h1 className="px-20 py-10 text-3xl ">No game to manage</h1>;
+    return <h1 className="px-20 py-10 text-3xl">No game to manage</h1>;
   return (
-    <div className="w-4/5 h-full items-center px-10">
-      <div className="w-full h-20 ">
-        <h1 className="text-4xl font-bold p-6 rounded-3xl bg-gray-400 mr-16">
-          주최중인 경기 목록
-        </h1>
-      </div>
-      {/* 게임 정보(넣어야함) */}
-      <div className="w-full h-full" id="명단 큰 상자">
-        <div className="table w-1/5 h-10 font-semibold rounded-xl bg-gray-200 text-left mt-6 px-10 pt-2 mr-16">
-          주최 경기 목록
+    <div className="w-full overflow: auto">
+      {mygames.map((game, i) => (
+        <div key={i} className="" onClick={(e) => manageGame(game.gameId)}>
+          <div>game.title</div>
+          <div>game.gameId</div>
+          <div>game.startAt</div>
+          <div>game.finishAt</div>
+          <div>game.prize</div>
+          <div>game.joinAmount</div>
+          <div>game.betAmount</div>
+          <div>game.gameStatus</div>
+          <br />
         </div>
-        <div
-          className="rounded-xl bg-gray-500 w-3/4 h-4/6 p-5 m-5 overflow-y-auto absolute"
-          id="명단 큰 상자 아랫 부분"
-        >
-          {mygames.map((game, i) => (
-            <div
-              key={i}
-              // className="border shadow rounded-xl overflow-hidden"
-              onClick={() => manageGame(game.gameId)}
-            >
-              <div className={Mainbarstyles.mainbarwrap}>
-                <div className={`${Mainbarstyles.bar} ${'w-full px-10 py-4'}`}>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    경기 고유번호 : {game.gameId}
-                  </div>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    게임 시작 : {game.startAt}
-                  </div>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    게임 종료 : {game.finishAt}
-                  </div>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    상금 : {game.prize} ETH
-                  </div>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    참가비 : {game.joinFeeAmount} ETH
-                  </div>
-                  <div
-                    style={{ height: '32px' }}
-                    className="text-l font-semibold"
-                  >
-                    베팅비 : {game.betFeeAmount} ETH
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

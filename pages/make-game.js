@@ -59,8 +59,8 @@ export default function MakeGame() {
   }
 
   return (
-    <div className="flex justify-center bg-gray-400">
-      <div className="w-2/5 flex flex-col pb-12 ">
+    <div className="flex justify-center">
+      <div className="w-1/2 flex flex-col pb-12 ">
         <input
           placeholder="게임 ID"
           className="mt-8 border rounded p-4"
@@ -112,10 +112,22 @@ export default function MakeGame() {
         />
         <button
           onClick={makeGame}
-          className="font-bold mt-4 bg-gray-500 text-white rounded p-4 shadow-lg"
+          className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
         >
           게임 생성
         </button>
+      </div>
+      <div>
+        {/* <CreateUser
+          gameId={gameId}
+          startAt={startAt}
+          finishAt={finishAt}
+          prize={prize}
+          joinFeeAmount={joinFeeAmount}
+          betFeeAmount={betFeeAmount}
+          onChange={onChange}
+          onCreate={onCreate}
+        /> */}
       </div>
     </div>
   );

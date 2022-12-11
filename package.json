@@ -12,10 +12,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.2",
     "@openzeppelin/contracts": "^4.5.0",
-    "@zeit/next-css": "^1.0.1",
     "axios": "^1.2.0",
-    "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.2",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.5.4",
@@ -27,7 +24,6 @@
     "web3modal": "^1.9.5"
   },
   "devDependencies": {
-    "@svgr/webpack": "^6.5.1",
     "autoprefixer": "^10.2.6",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
