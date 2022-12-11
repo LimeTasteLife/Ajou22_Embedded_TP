@@ -1,5 +1,5 @@
-import App from "../components/App";
-import Createdbar from "../components/createdbar";
+import App from '../components/App';
+import Createdbar from '../components/createdbar';
 
 export default function Temphome2() {
   // let gamelist = App.inputs;

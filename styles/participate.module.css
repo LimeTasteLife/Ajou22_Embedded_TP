@@ -1,7 +1,7 @@
 .participatebox {
   --antd-wave-shadow-color: #1890ff;
   font-variant: tabular-nums;
-  font-feature-settings: "tnum";
+  font-feature-settings: 'tnum';
   line-height: 1.2rem;
   text-rendering: optimizelegibility;
   font-kerning: none;
@@ -12,8 +12,8 @@
   user-select: none;
   font-weight: 700;
   text-size-adjust: none;
-  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
-    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  font-family: Roboto, 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕',
+    'Apple SD Gothic Neo', 돋움, dotum, sans-serif !important;
   font-size: 1.2rem;
   color: rgb(238, 238, 238);
   box-sizing: border-box;
@@ -27,7 +27,7 @@
 .time {
   --antd-wave-shadow-color: #1890ff;
   font-variant: tabular-nums;
-  font-feature-settings: "tnum";
+  font-feature-settings: 'tnum';
   text-rendering: optimizelegibility;
   font-kerning: none;
   -webkit-font-smoothing: antialiased;
@@ -37,8 +37,8 @@
   user-select: none;
   font-weight: 700;
   text-size-adjust: none;
-  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
-    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  font-family: Roboto, 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕',
+    'Apple SD Gothic Neo', 돋움, dotum, sans-serif !important;
   margin-bottom: 0px;
   font-size: 1.2rem;
   color: rgb(238, 238, 238);
@@ -54,7 +54,7 @@
 .beatscreen {
   --antd-wave-shadow-color: #1890ff;
   font-variant: tabular-nums;
-  font-feature-settings: "tnum";
+  font-feature-settings: 'tnum';
   line-height: 1.2rem;
   text-rendering: optimizelegibility;
   font-kerning: none;
@@ -65,8 +65,8 @@
   user-select: none;
   font-weight: 700;
   text-size-adjust: none;
-  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
-    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  font-family: Roboto, 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕',
+    'Apple SD Gothic Neo', 돋움, dotum, sans-serif !important;
   margin-bottom: 0px;
   font-size: 1.2rem;
   color: rgb(238, 238, 238);
@@ -79,7 +79,7 @@
 .betting {
   --antd-wave-shadow-color: #1890ff;
   font-variant: tabular-nums;
-  font-feature-settings: "tnum";
+  font-feature-settings: 'tnum';
   line-height: 1.2rem;
   text-rendering: optimizelegibility;
   font-kerning: none;
@@ -90,8 +90,8 @@
   user-select: none;
   font-weight: 700;
   text-size-adjust: none;
-  font-family: Roboto, "Noto Sans KR", "Malgun Gothic", "맑은 고딕",
-    "Apple SD Gothic Neo", 돋움, dotum, sans-serif !important;
+  font-family: Roboto, 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕',
+    'Apple SD Gothic Neo', 돋움, dotum, sans-serif !important;
   margin-bottom: 0px;
   font-size: 1.2rem;
   color: rgb(238, 238, 238);

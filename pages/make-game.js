@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { ethers } from "ethers";
-import { useRouter } from "next/router";
-import Web3Modal from "web3modal";
+import { useState } from 'react';
+import { ethers } from 'ethers';
+import { useRouter } from 'next/router';
+import Web3Modal from 'web3modal';
 
-import { testAddress } from "../config";
-import Test from "../artifacts/contracts/Test.sol/Test.json";
-import App from "../components/App";
+import { gameManagerAddress } from '../config';
+import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json';
 
 export default function MakeGame() {
   const [formInput, updateFormInput] = useState({
-    gameId: "",
-    startAt: "",
-    finishAt: "",
-    prize: "",
-    joinFeeAmount: "",
-    betFeeAmount: "",
+    gameId: '',
+    title: '',
+    startAt: '',
+    finishAt: '',
+    prize: '',
+    joinFeeAmount: '',
+    betFeeAmount: '',
   });
   const router = useRouter();
 
@@ -24,19 +24,27 @@ export default function MakeGame() {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    const prize = ethers.utils.parseUnits(formInput.prize, "ether");
+    const prize = ethers.utils.parseUnits(formInput.prize, 'ether');
     const joinFeeAmount = ethers.utils.parseUnits(
       formInput.joinFeeAmount,
-      "ether"
+      'ether'
     );
+
     const betFeeAmount = ethers.utils.parseUnits(
       formInput.betFeeAmount,
-      "ether"
+      'ether'
     );
-    let contract = new ethers.Contract(testAddress, Test.abi, signer);
+    let contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    //console.log(formInput);
 
     let transaction = await contract.makeGame(
       parseInt(formInput.gameId),
+      formInput.title,
       parseInt(formInput.startAt),
       parseInt(formInput.finishAt),
       joinFeeAmount,
@@ -47,17 +55,24 @@ export default function MakeGame() {
     );
     await transaction.wait();
 
-    router.replace("/");
+    router.replace('/');
   }
 
   return (
-    <div className="flex justify-center pl-52">
+    <div className="flex justify-center bg-gray-400">
       <div className="w-2/5 flex flex-col pb-12 ">
         <input
           placeholder="게임 ID"
           className="mt-8 border rounded p-4"
           onChange={(e) =>
             updateFormInput({ ...formInput, gameId: e.target.value })
+          }
+        />
+        <textarea
+          placeholder="경기 제목"
+          className="mt-2 border rounded p-4"
+          onChange={(e) =>
+            updateFormInput({ ...formInput, title: e.target.value })
           }
         />
         <textarea
@@ -97,22 +112,10 @@ export default function MakeGame() {
         />
         <button
           onClick={makeGame}
-          className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg"
+          className="font-bold mt-4 bg-gray-500 text-white rounded p-4 shadow-lg"
         >
           게임 생성
         </button>
-      </div>
-      <div>
-        {/* <CreateUser
-          gameId={gameId}
-          startAt={startAt}
-          finishAt={finishAt}
-          prize={prize}
-          joinFeeAmount={joinFeeAmount}
-          betFeeAmount={betFeeAmount}
-          onChange={onChange}
-          onCreate={onCreate}
-        /> */}
       </div>
     </div>
   );

@@ -1,14 +1,14 @@
-import { ethers } from "ethers";
-import Web3Modal from "web3modal";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
-// import { testAddress } from "../config";
-import Test from "../artifacts/contracts/Test.sol/Test.json";
+import { gameManagerAddress } from '../config';
+import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json';
 
 export default function myApp({ pageProps }) {
   const [formInput, updateFormInput] = useState({
-    userId: "",
+    userId: '',
   });
   const router = useRouter();
 
@@ -18,14 +18,18 @@ export default function myApp({ pageProps }) {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
 
-    const contract = new ethers.Contract(testAddress, Test.abi, signer);
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
 
     console.log(formInput.userId);
     let transaction = await contract.registration(parseInt(formInput.userId));
     // registration 중복은 어떻게 해결할까?
     await transaction.wait();
 
-    router.replace("/");
+    router.replace('/');
   }
 
   return (

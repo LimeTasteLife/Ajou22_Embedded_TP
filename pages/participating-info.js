@@ -1,9 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import ParticipateStyle from "../styles/participate.module.css";
-import Buttonstyle from "../styles/button.module.css";
-import InfobarStyle from "../styles/mainbar.module.css";
-import Mainbarstyles from "../styles/mainbar.module.css";
+import Image from 'next/image';
+import Link from 'next/link';
+import ParticipateStyle from '../styles/participate.module.css';
+import Buttonstyle from '../styles/button.module.css';
+import InfobarStyle from '../styles/mainbar.module.css';
+import Mainbarstyles from '../styles/mainbar.module.css';
 
 export default function participatinginfor() {
   //게임에 참여중인 인원 저장하는 list
@@ -12,9 +12,7 @@ export default function participatinginfor() {
   return (
     <div
       id="Participating Container"
-      className={`${
-        ParticipateStyle.participatebox
-      } ${"w-4/5 float-right mx-10"}`}
+      className={`${ParticipateStyle.participatebox} ${'w-4/5 mx-10'}`}
     >
       <div id="시간 container" className={ParticipateStyle.time}>
         <span className="w-1/2">시작 시간:(startAt) </span>
@@ -24,14 +22,14 @@ export default function participatinginfor() {
         id="1팀 2팀 경쟁 화면"
         className={`${
           ParticipateStyle.beatscreen
-        } ${"fixed w-300 justify-center"}`}
+        } ${'fixed w-300 justify-center'}`}
       >
         {/* m-auto 는 수평의 중앙으로 정렬하는 역할 */}
         <div
           id="1팀 2팀 명단"
           className={`${
             ParticipateStyle.betting
-          } ${"fixed w-3/5 h-96 absolute m-auto"}`}
+          } ${'fixed w-3/5 h-96 absolute m-auto'}`}
         >
           <Image
             src="/../public/images/3002220_93027_1044.png"
@@ -116,8 +114,8 @@ export default function participatinginfor() {
           <div className="w-1/2 h-20 float-left">
             <div className="p-10 h-full">
               <div className="w-full text-center">
-                <Link href={"./partificpaing-now"}>
-                  <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
+                <Link href={'./partificpaing-now'}>
+                  <div className={`${Buttonstyle.btncyan} ${'w-1/3'}`}>
                     확인
                   </div>
                 </Link>
@@ -129,8 +127,8 @@ export default function participatinginfor() {
             <div className="p-10 h-full">
               <div className="w-full text-center">
                 {/* delete 기능 구현 */}
-                <Link href={"./participating-now"}>
-                  <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
+                <Link href={'./participating-now'}>
+                  <div className={`${Buttonstyle.btnred} ${'w-1/3'}`}>
                     게임나가기
                   </div>
                 </Link>
