@@ -16,7 +16,7 @@ export default function Home() {
   const [loadingState, setLoadingState] = useState('not-loaded');
   useEffect(() => {
     loadGames();
-  }, [games]);
+  }, []);
   const router = useRouter();
 
   async function loadGames() {
@@ -32,6 +32,7 @@ export default function Home() {
       signer
     );
     const data = await contract.joinableGame();
+    const array = [];
     const items = await Promise.all(
       data.map(async (i) => {
         let prize = ethers.utils.formatUnits(i.prize.toString(), 'ether');
@@ -53,9 +54,11 @@ export default function Home() {
           betFeeAmount: betAmount,
           gameStatus: i.gameStatus,
         };
-        return item;
+        console.log(item);
+        return JSON.stringify(item);
       })
     );
+    console.log(items);
     setGames(items);
     setLoadingState('loaded');
   }

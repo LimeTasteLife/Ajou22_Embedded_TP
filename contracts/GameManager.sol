@@ -6,17 +6,13 @@ import "./ProcessBase.sol";
 //import "./testGet.sol";
 
 contract GameManager is GameProcess {
-    function registration(uint256 _userId) public {
-        require(_userId == uint256(uint64(_userId)), "UserId overflow");
+    function registration(string memory _userId) public {
         require(!searchUser(msg.sender), "Already user");
-        require(getAuthId(_userId), "Auth Id error");
 
-        User memory _user = User({
-            userAddress: msg.sender,
-            userId: uint64(_userId)
-        });
+        User memory _user = User({userAddress: msg.sender, gameNick: _userId});
         users.push(_user);
-        emit Registration(msg.sender, _userId);
+        addressToUserNick[_user.userAddress] = _user;
+        emit Registration(msg.sender, _user.gameNick);
     }
 
     function makeGame(
@@ -94,7 +90,6 @@ contract GameManager is GameProcess {
     }
 
     function finishGame(uint256 _gameId) public {
-        whoIsWinner(_gameId);
         require(
             msg.sender == gameList[uint64(_gameId)].maker,
             "Not game maker"
