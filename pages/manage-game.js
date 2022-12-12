@@ -138,3 +138,58 @@ export default function ManageGame({ props }) {
     </div>
   );
 }
+
+// <div className="w-full h-20">
+// <h1 className="text-4xl mb-5 font-bold p-6">Game Management</h1>
+// </div>
+// {/* <span className="text-7xl">💬</span> */}
+// {/* 게임 정보(넣어야함) */}
+// <div className="w-full h-full" id="명단 큰 상자">
+// <div className="w-full h-full text-left py-6 px-10">주최 게임 목록</div>
+// </div>
+
+// <div className="w-full h-full" id="명단 큰 상자">
+// <div className="w-full h-40 bg-gray-500" id="명단 큰 상자 아랫 부분">
+//   <div className="w-full px-10 py-4 ">
+//     <Inforbar className="w-full h-full">받아올 정보</Inforbar>
+//   </div>
+
+//   <div className="w-full px-10 py-4">
+//     <Inforbar className="w-full h-full">받아올 정보</Inforbar>
+//   </div>
+
+//   <div className="w-full px-10 py-4 ">
+//     <Inforbar className="w-full h-full">받아올 정보</Inforbar>
+//   </div>
+
+//   <div className="w-full px-10 py-4">
+//     <Inforbar className="w-full h-full">받아올 정보</Inforbar>
+//   </div>
+// </div>
+
+// <div className="w-full h-20">
+//   <div className="w-1/2 float-left p-10 h-full">
+//     <div className="w-full text-center">
+//       <Link href={"./temphome"}>
+//         <div className={`${Buttonstyle.btncyan} ${"w-1/3"}`}>
+//           취소하기
+//           {/* (어디로 돌아가며, 어떻게 설정할지 생각 X) */}
+//         </div>
+//       </Link>
+//     </div>
+//   </div>
+// </div>
+
+// <div className="w-full h-20">
+//   <div className="w-1/2 float-left p-10 h-full">
+//     <div className="w-full text-center">
+//       <Link href={"./manage-game"}>
+//         <div className={`${Buttonstyle.btnred} ${"w-1/3"}`}>
+//           마감하기
+//           {/* (어디로 돌아가며, 어떻게 설정할지 생각 X) */}
+//         </div>
+//       </Link>
+//     </div>
+//   </div>
+// </div>
+// </div>

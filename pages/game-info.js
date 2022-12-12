@@ -220,17 +220,25 @@ export default function Gameinformation({ props }) {
             </div>
           </div>
 
+          {/* 베팅 이벤트 - 버튼 클릭 시 작동하도록 */}
           <div id="베팅 정보" className=" mx-16 py-3">
-            <div type="bar" className={Mainbarstyles.bar}>
-              <div type="bar" className={InfobarStyle.bar}>
-                <div>베팅액: (betting)</div>
-              </div>
+            <div className="bg-black w-2/5 h-12 float-left rounded-2xl pl-4 items-center flex">
+              1팀 베팅액: (betting1)
+              <button className="bg-blue-300 items-center flex rounded-full ml-48">
+                1팀 베팅하기
+              </button>
+            </div>
+            <div className="bg-black w-2/5 h-12 float-right rounded-2xl pl-4 items-center flex">
+              2팀 베팅액: (betting2)
+              <button className="bg-pink-300 items-center flex rounded-full ml-48">
+                2팀 베팅하기
+              </button>
             </div>
           </div>
 
           {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
-          <div className="w-full h-auto float-left">
-            <div className="p-2">
+          <div className="w-full h-18 float-left">
+            <div className="p-4 h-2/3">
               <div className="w-full text-center">
                 <Link href={'/'}>
                   <div className={`${Buttonstyle.btncyan} ${'w-1/5'}`}>
