@@ -6,13 +6,17 @@ import "./ProcessBase.sol";
 //import "./testGet.sol";
 
 contract GameManager is GameProcess {
-    function registration(string memory _userId) public {
+    function registration(uint256 _userId) public {
+        require(_userId == uint256(uint64(_userId)), "UserId overflow");
         require(!searchUser(msg.sender), "Already user");
+        require(getAuthId(_userId), "Auth Id error");
 
-        User memory _user = User({userAddress: msg.sender, gameNick: _userId});
+        User memory _user = User({
+            userAddress: msg.sender,
+            userId: uint64(_userId)
+        });
         users.push(_user);
-        addressToUserNick[_user.userAddress] = _user;
-        emit Registration(msg.sender, _user.gameNick);
+        emit Registration(msg.sender, _userId);
     }
 
     function makeGame(
@@ -25,21 +29,13 @@ contract GameManager is GameProcess {
     ) public payable {
         require(searchUser(msg.sender), "Not user");
         require(_gameId == uint256(uint64(_gameId)), "GameId overflow");
-        require(
-            _startAt == uint256(uint64(_startAt)),
-            "Start timestamp overflow"
-        );
-        require(
-            _finishAt == uint256(uint64(_finishAt)),
-            "Finish timestamp overflow"
-        );
         require(!searchGame(_gameId), "No exist game");
 
         gameList[uint64(_gameId)].maker = msg.sender;
         gameList[uint64(_gameId)].gameId = uint32(_gameId);
         gameList[uint64(_gameId)].gameName = _gameName;
-        gameList[uint64(_gameId)].startAt = uint8(_startAt);
-        gameList[uint64(_gameId)].finishAt = uint8(_finishAt);
+        gameList[uint64(_gameId)].startAt = _startAt;
+        gameList[uint64(_gameId)].finishAt = _finishAt;
         gameList[uint64(_gameId)].prize = uint64(msg.value);
         gameList[uint64(_gameId)].joinAmount = uint64(_joinFeeAmount);
         gameList[uint64(_gameId)].betAmount = uint64(_betFeeAmount);
@@ -98,6 +94,7 @@ contract GameManager is GameProcess {
     }
 
     function finishGame(uint256 _gameId) public {
+        whoIsWinner(_gameId);
         require(
             msg.sender == gameList[uint64(_gameId)].maker,
             "Not game maker"
@@ -277,6 +274,22 @@ contract GameManager is GameProcess {
         return gameList[_gameId];
     }
 
+    function viewGameNickList(
+        uint64 _gameId
+    ) public view returns (string[] memory) {
+        string[] memory nickList = new string[](10);
+        for (uint i = 0; i < 10; i++) {
+            address currentUser = gameList[_gameId].playerList[i].playerAddress;
+            string memory currentNick = addressToUserNick[currentUser].gameNick;
+            nickList[i] = currentNick;
+        }
+        return nickList;
+    }
+
+    function viewUserNick(address _user) public view returns (string memory) {
+        return addressToUserNick[_user].gameNick;
+    }
+
     function viewMyMakingGames() public view returns (Game[] memory) {
         uint currentIndex = 0;
         uint myIndex = 0;
@@ -338,5 +351,22 @@ contract GameManager is GameProcess {
             }
         }
         return (myBettingGames, myBettings);
+    }
+
+    function viewPlayerwithTeamNick(
+        uint32 _gameId
+    ) public view returns (uint8[] memory, string[] memory) {
+        uint8[] memory team = new uint8[](10);
+        string[] memory nicks = new string[](10);
+        Game memory currentGame = gameList[_gameId];
+
+        for (uint i = 0; i < 10; i++) {
+            address currentUser = currentGame.playerList[i].playerAddress;
+            string memory nick = addressToUserNick[currentUser].gameNick;
+            team[i] = currentGame.playerList[i].team;
+            nicks[i] = nick;
+        }
+
+        return (team, nicks);
     }
 }

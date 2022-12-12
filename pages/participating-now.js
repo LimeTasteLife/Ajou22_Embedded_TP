@@ -13,7 +13,6 @@ import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json
 
 //생성한 게임 중에 gameId가 동일한 것들을 보여주고 그 게임들의 설정을 바꿀 수 있어야 함
 export default function Participatingnow({ props }) {
-<<<<<<< HEAD
   const [games, setGames] = useState([]);
   useEffect(() => {
     loadGames();
@@ -63,142 +62,13 @@ export default function Participatingnow({ props }) {
       setGames(items);
     }
   }
-=======
-  //함수 자체를 그 함수 내 const로 반환해서 사용 가능
-  // const list = App();
-  // console.log(list);
 
-  //모든 게임 list받아와서 gameId 체크하여 선별적으로 다시 usrgames라는 list에 재 저장한 후 출력해주기
-  // const usrgames = ();
-
-  // useEffect( ()=> {
-
-  // }, [usrgames])
-
-  ///임시로 설정
-  const [games, setGames] = useState([
-    {
-      gameId: "dolor",
-      startAt: 20245664,
-      finishAt: 20240207,
-      prize: 5402,
-      joinFeeAmount: 563,
-      betFeeAmount: 353,
-    },
-    {
-      gameId: "libero",
-      startAt: 20222348,
-      finishAt: 20241048,
-      prize: 4555,
-      joinFeeAmount: 681,
-      betFeeAmount: 301,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221002,
-      finishAt: 20244849,
-      prize: 4611,
-      joinFeeAmount: 611,
-      betFeeAmount: 334,
-    },
-    {
-      gameId: "adipiscing",
-      startAt: 20230503,
-      finishAt: 20231667,
-      prize: 7847,
-      joinFeeAmount: 977,
-      betFeeAmount: 368,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221523,
-      finishAt: 20226040,
-      prize: 2411,
-      joinFeeAmount: 578,
-      betFeeAmount: 319,
-    },
-    {
-      gameId: "turpis",
-      startAt: 20233506,
-      finishAt: 20226659,
-      prize: 4588,
-      joinFeeAmount: 953,
-      betFeeAmount: 318,
-    },
-    {
-      gameId: "pede",
-      startAt: 20244991,
-      finishAt: 20223622,
-      prize: 3057,
-      joinFeeAmount: 504,
-      betFeeAmount: 395,
-    },
-    {
-      gameId: "donec",
-      startAt: 20221038,
-      finishAt: 20222078,
-      prize: 6687,
-      joinFeeAmount: 716,
-      betFeeAmount: 302,
-    },
-    {
-      gameId: "risus",
-      startAt: 20234988,
-      finishAt: 20235937,
-      prize: 5129,
-      joinFeeAmount: 608,
-      betFeeAmount: 436,
-    },
-    {
-      gameId: "vitae",
-      startAt: 20237872,
-      finishAt: 20246296,
-      prize: 6473,
-      joinFeeAmount: 583,
-      betFeeAmount: 426,
-    },
-    {
-      gameId: "aliquam",
-      startAt: 20222496,
-      finishAt: 20226160,
-      prize: 2565,
-      joinFeeAmount: 793,
-      betFeeAmount: 428,
-    },
-    {
-      gameId: "in",
-      startAt: 20234844,
-      finishAt: 20245116,
-      prize: 2662,
-      joinFeeAmount: 890,
-      betFeeAmount: 339,
-    },
-    {
-      gameId: "mauris",
-      startAt: 20250111,
-      finishAt: 20222029,
-      prize: 5571,
-      joinFeeAmount: 669,
-      betFeeAmount: 488,
-    },
-    {
-      gameId: "sem",
-      startAt: 20244767,
-      finishAt: 20221120,
-      prize: 1332,
-      joinFeeAmount: 899,
-      betFeeAmount: 447,
-    },
-    {
-      gameId: "a",
-      startAt: 20249734,
-      finishAt: 20248090,
-      prize: 5605,
-      joinFeeAmount: 773,
-      betFeeAmount: 321,
-    },
-  ]);
->>>>>>> e3d56dd005aa429cfaf5ea2729207d120375c8c2
+  async function participate(gameId) {
+    router.replace({
+      pathname: '/participating-info',
+      query: { gameId: gameId },
+    });
+  }
 
   return (
     <div className="w-4/5 h-full px-10">
@@ -221,52 +91,49 @@ export default function Participatingnow({ props }) {
             <div
               key={i}
               // className="border shadow rounded-xl overflow-hidden"
+              onClick={() => participate(game.gameId)}
             >
               {/* 링크 넘어가면서 정보 전달해주면 됨 - Link의 경우, 다른 props전달 못하니 a태그나 router 이용 */}
-              <Link href="../participating-info">
-                <div className={Mainbarstyles.mainbarwrap}>
+              <div className={Mainbarstyles.mainbarwrap}>
+                <div className={`${Mainbarstyles.bar} ${'w-full px-10 py-4'}`}>
                   <div
-                    className={`${Mainbarstyles.bar} ${'w-full px-10 py-4'}`}
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
                   >
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      주최자 : {game.gameId}
-                    </div>
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      게임 시작 : {game.startAt}
-                    </div>
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      게임 종료 : {game.finishAt}
-                    </div>
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      상금 : {game.prize} ETH
-                    </div>
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      참가비 : {game.joinFeeAmount} ETH
-                    </div>
-                    <div
-                      style={{ height: '32px' }}
-                      className="text-l font-semibold"
-                    >
-                      베팅비 : {game.betFeeAmount} ETH
-                    </div>
+                    주최자 : {game.gameId}
+                  </div>
+                  <div
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
+                  >
+                    게임 시작 : {game.startAt}
+                  </div>
+                  <div
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
+                  >
+                    게임 종료 : {game.finishAt}
+                  </div>
+                  <div
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
+                  >
+                    상금 : {game.prize} ETH
+                  </div>
+                  <div
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
+                  >
+                    참가비 : {game.joinFeeAmount} ETH
+                  </div>
+                  <div
+                    style={{ height: '32px' }}
+                    className="text-l font-semibold"
+                  >
+                    베팅비 : {game.betFeeAmount} ETH
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

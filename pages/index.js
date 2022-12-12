@@ -149,7 +149,7 @@ export default function Home() {
                           style={{ height: '32px' }}
                           className="text-l font-semibold"
                         >
-                          주최자 : {game.gameId}
+                          경기 고유번호 : {game.gameId}
                         </div>
                         <div
                           style={{ height: '32px' }}
@@ -167,19 +167,19 @@ export default function Home() {
                           style={{ height: '32px' }}
                           className="text-l font-semibold"
                         >
-                          상금 : {game.prize}
+                          상금 : {game.prize} ETH
                         </div>
                         <div
                           style={{ height: '32px' }}
                           className="text-l font-semibold"
                         >
-                          참가비 : {game.joinFeeAmount}
+                          참가비 : {game.joinFeeAmount} ETH
                         </div>
                         <div
                           style={{ height: '32px' }}
                           className="text-l font-semibold"
                         >
-                          베팅비 : {game.betFeeAmount}
+                          베팅비 : {game.betFeeAmount} ETH
                         </div>
                       </div>
                     </div>

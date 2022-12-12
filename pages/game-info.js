@@ -15,6 +15,14 @@ import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json
 
 export default function Gameinformation({ props }) {
   const [game, setGame] = useState([]);
+  const [userList, setUserList] = useState({
+    team1: [],
+    team2: [],
+  });
+  const [formInput, updateFormInput] = useState({
+    bet1Amount: '',
+    bet2Amount: '',
+  });
   const [loadingState, setLoadingState] = useState('not-loaded');
   useEffect(() => {
     loadGame();
@@ -52,9 +60,16 @@ export default function Gameinformation({ props }) {
       playerList: data.playerList,
       betList: data.betList,
     };
-    console.log(data);
-
     setGame(item);
+
+    /*
+    const users = Promise.all(
+      item.playerList.map(async(i) => {
+        const item = await contract.viewUserNick(i.playerAddress);
+      })
+    )
+    */
+
     setLoadingState('loaded');
   }
 
@@ -100,6 +115,64 @@ export default function Gameinformation({ props }) {
     router.replace('/participating-now');
   }
 
+  async function bet1() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const value = game.betFeeAmount * formInput.bet1Amount;
+    console.log(value);
+    const realvalue = ethers.utils.parseUnits(value.toString(), 'ether');
+
+    const transaction = await contract.betting(
+      game.gameId,
+      1,
+      formInput.bet1Amount,
+      {
+        value: realvalue,
+      }
+    );
+    await transaction.wait();
+
+    router.replace('/betting-now');
+  }
+
+  async function bet2() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const value = game.betFeeAmount * formInput.bet2Amount;
+    console.log(value);
+    const realvalue = ethers.utils.parseUnits(value.toString(), 'ether');
+
+    const transaction = await contract.betting(
+      game.gameId,
+      2,
+      formInput.bet2Amount,
+      {
+        value: realvalue,
+      }
+    );
+    await transaction.wait();
+
+    router.replace('/betting-now');
+  }
+
   if (loadingState === 'not-loaded')
     return <h1 className="px-20 py-10 text-3xl">No game info</h1>;
   return (
@@ -139,44 +212,46 @@ export default function Gameinformation({ props }) {
               2팀 명단
             </div>
           </div>
-          <div
-            id="1팀 명단"
-            className="bg-blue-400 w-2/5 h-64 float-left rounded-3xl overflow-y-auto mx-16"
-          >
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[0].playerAddress}
+          <div>
+            <div
+              id="1팀 명단"
+              className="bg-blue-400 w-2/5 h-64 float-left rounded-3xl overflow-y-auto mx-16"
+            >
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[0].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[1].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[2].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[3].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[4].playerAddress}
+              </div>
             </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[1].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[2].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[3].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[4].playerAddress}
-            </div>
-          </div>
-          <div
-            id="2팀 명단"
-            className="bg-red-00 w-2/5 h-64 float-right rounded-3xl overflow-y-auto mx-16"
-          >
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[5].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[6].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[7].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[8].playerAddress}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 rounded-2xl">
-              {game.playerList[9].playerAddress}
+            <div
+              id="2팀 명단"
+              className="bg-red-500 w-2/5 h-64 float-right rounded-3xl overflow-y-auto mx-16"
+            >
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[5].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[6].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[7].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[8].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[9].playerAddress}
+              </div>
             </div>
           </div>
         </div>
@@ -190,7 +265,7 @@ export default function Gameinformation({ props }) {
                   className={`${Buttonstyle.btnred} ${'w-1/3'}`}
                   onClick={participate1}
                 >
-                  1팀 참여하기
+                  1팀 참가하기
                 </div>
               </div>
             </div>
@@ -198,41 +273,77 @@ export default function Gameinformation({ props }) {
           <div className="w-1/2 h-20 float-left">
             <div className="px-3 h-full">
               <div className="w-full text-center">
-                {/* delete 기능 구현 */}
-                <Link href={'./participating-now'}>
-                  <div
-                    className={`${Buttonstyle.btnred} ${'w-1/3'}`}
-                    onClick={participate2}
-                  >
-                    2팀 참여하기
-                  </div>
-                </Link>
+                <div
+                  className={`${Buttonstyle.btnred} ${'w-1/3'}`}
+                  onClick={participate2}
+                >
+                  2팀 참가하기
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div id="상금 및 베팅 정보, 확인 및 나가기 버튼 container">
+        <div id="상금 및 베팅 정보, 확인 및 나가기 버튼 container flex-col">
           <div id="상금 정보" className=" mx-16">
             <div type="bar" className={Mainbarstyles.bar}>
               <div type="bar" className={InfobarStyle.bar}>
-                <div>상금: {game.prize}</div>
+                <div>상금: {game.prize} ETH</div>
+                <div>베팅 단위: {game.betFeeAmount} ETH</div>
               </div>
             </div>
           </div>
 
           {/* 베팅 이벤트 - 버튼 클릭 시 작동하도록 */}
           <div id="베팅 정보" className=" mx-16 py-3">
-            <div className="bg-black w-2/5 h-12 float-left rounded-2xl pl-4 items-center flex">
-              1팀 베팅액: (betting1)
-              <button className="bg-blue-300 items-center flex rounded-full ml-48">
-                1팀 베팅하기
-              </button>
-            </div>
-            <div className="bg-black w-2/5 h-12 float-right rounded-2xl pl-4 items-center flex">
-              2팀 베팅액: (betting2)
-              <button className="bg-pink-300 items-center flex rounded-full ml-48">
-                2팀 베팅하기
-              </button>
+            <div className="flex flex-col">
+              <div className="flex flex-row item-center">
+                <div className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex">
+                  <p>1팀 베팅 총액: (betting1) ETH</p>
+                </div>
+                <div className="w-1/5"></div>
+                <div
+                  className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex"
+                  onClick={bet2}
+                >
+                  <p>2팀 베팅 총액: (betting2) ETH</p>
+                </div>
+              </div>
+              <div className="flex flex-row pt-2">
+                <div className="w-2/5 text-center flex flex-row">
+                  <input
+                    placeholder="베팅금액"
+                    className="ml-2 mt-2 ml-20 rounded bg-gray-500 text-white"
+                    onChange={(e) =>
+                      updateFormInput({
+                        ...formInput,
+                        bet1Amount: e.target.value,
+                      })
+                    }
+                  />
+                  <button
+                    className="mt-2 ml-4 w-1/5 bg-blue-500 items-center flex rounded-full"
+                    onClick={bet1}
+                  >
+                    <p class="text-center ml-8">베팅</p>
+                  </button>
+                </div>
+                <div className="w-1/5"></div>
+                <div className="w-2/5 text-center flex flex-row">
+                  <input
+                    placeholder="베팅금액"
+                    className="ml-2 mt-2 ml-20 rounded bg-gray-500 text-white"
+                    onChange={(e) =>
+                      updateFormInput({
+                        ...formInput,
+                        bet2Amount: e.target.value,
+                      })
+                    }
+                  ></input>
+                  <button className="mt-2 w-1/5 ml-4 bg-red-400 flex rounded-full">
+                    <p className="text-center ml-8">베팅</p>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -1,102 +1,84 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ethers } from 'ethers';
+import Web3Modal from 'web3modal';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import ParticipateStyle from '../styles/participate.module.css';
 import Buttonstyle from '../styles/button.module.css';
 import InfobarStyle from '../styles/mainbar.module.css';
 import Mainbarstyles from '../styles/mainbar.module.css';
 
-export default function participatinginfor() {
-  const ptpgame = [
-    {
-      gameId: "dolor",
-      startAt: 20245664,
-      finishAt: 20240207,
-      prize: 5402,
-      joinFeeAmount: 563,
-      betFeeAmount: 353,
-    },
-    {
-      gameId: "libero",
-      startAt: 20222348,
-      finishAt: 20241048,
-      prize: 4555,
-      joinFeeAmount: 681,
-      betFeeAmount: 301,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221002,
-      finishAt: 20244849,
-      prize: 4611,
-      joinFeeAmount: 611,
-      betFeeAmount: 334,
-    },
-    {
-      gameId: "adipiscing",
-      startAt: 20230503,
-      finishAt: 20231667,
-      prize: 7847,
-      joinFeeAmount: 977,
-      betFeeAmount: 368,
-    },
-    {
-      gameId: "curabitur",
-      startAt: 20221523,
-      finishAt: 20226040,
-      prize: 2411,
-      joinFeeAmount: 578,
-      betFeeAmount: 319,
-    },
-    {
-      gameId: "turpis",
-      startAt: 20233506,
-      finishAt: 20226659,
-      prize: 4588,
-      joinFeeAmount: 953,
-      betFeeAmount: 318,
-    },
-    {
-      gameId: "pede",
-      startAt: 20244991,
-      finishAt: 20223622,
-      prize: 3057,
-      joinFeeAmount: 504,
-      betFeeAmount: 395,
-    },
-    {
-      gameId: "donec",
-      startAt: 20221038,
-      finishAt: 20222078,
-      prize: 6687,
-      joinFeeAmount: 716,
-      betFeeAmount: 302,
-    },
-    {
-      gameId: "risus",
-      startAt: 20234988,
-      finishAt: 20235937,
-      prize: 5129,
-      joinFeeAmount: 608,
-      betFeeAmount: 436,
-    },
-    {
-      gameId: "vitae",
-      startAt: 20237872,
-      finishAt: 20246296,
-      prize: 6473,
-      joinFeeAmount: 583,
-      betFeeAmount: 426,
-    },
-  ];
+import { gameManagerAddress } from '../config';
+import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json';
 
+export default function participatinginfor() {
+  const [game, setGame] = useState([]);
+  const [userList, setUserList] = useState({
+    team1: [],
+    team2: [],
+  });
+  const [loadingState, setLoadingState] = useState('not-loaded');
+  useEffect(() => {
+    loadGame();
+  }, [game]);
+  const router = useRouter();
+
+  async function loadGame() {
+    const query = router.query;
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+    const data = await contract.viewGameInfo(query.gameId);
+    const item = {
+      gameId: data.gameId,
+      title: data.gameName,
+      startAt: data.startAt,
+      finishAt: data.finishAt,
+      prize: ethers.utils.formatUnits(data.prize.toString(), 'ether'),
+      joinFeeAmount: ethers.utils.formatUnits(
+        data.joinAmount.toString(),
+        'ether'
+      ),
+      betFeeAmount: ethers.utils.formatUnits(
+        data.betAmount.toString(),
+        'ether'
+      ),
+      gameStatus: data.gameStatus,
+      playerList: data.playerList,
+      betList: data.betList,
+    };
+    setGame(item);
+    console.log(data);
+
+    /*
+    const users = Promise.all(
+      item.playerList.map(async(i) => {
+        const item = await contract.viewUserNick(i.playerAddress);
+      })
+    )
+    */
+    setLoadingState('loaded');
+  }
+
+  if (loadingState === 'not-loaded')
+    return <h1 className="px-20 py-10 text-3xl">No game info</h1>;
   return (
     <div
       id="Participating Container"
-      className={`${ParticipateStyle.participatebox} ${'w-4/5 mx-10'}`}
+      className={`${ParticipateStyle.participatebox} ${''}`}
     >
       <div id="시간 container" className={ParticipateStyle.time}>
-        <span className="w-1/2">시작 시간:(startAt) </span>
-        <span className="w-1/2 float-right">종료 시간:(finishAt)</span>
+        <span className="w-1/2"> 시작 시간: {game.startAt} </span>
+        <span className="w-1/2 float-right">종료 시간: {game.finishAt}</span>
       </div>
       <div
         id="1팀 2팀 경쟁 화면"
@@ -117,8 +99,7 @@ export default function participatinginfor() {
             layout="fill"
           />
         </div>
-
-        <div id="1팀 2팀 명단 화면" className="w-full h-96 pt-10 ">
+        <div id="1팀 2팀 명단 화면" className="w-full h-80 pt-4">
           <div className="w-full h-10 text-center">
             <div className="w-1/2 h-10 text-center float-left pt-4">
               1팀 명단
@@ -127,98 +108,98 @@ export default function participatinginfor() {
               2팀 명단
             </div>
           </div>
-          <div
-            id="1팀 명단"
-            className="bg-indigo-600 w-2/5 h-64 absolute rounded-3xl overflow-y-auto mx-16"
-          >
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[0].gameId}
+          <div>
+            <div
+              id="1팀 명단"
+              className="bg-blue-400 w-2/5 h-64 float-left rounded-3xl overflow-y-auto mx-16"
+            >
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[0].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[1].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[2].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[3].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[4].playerAddress}
+              </div>
             </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[1].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[2].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[3].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[4].gameId}
-            </div>
-          </div>
-          <div
-            id="2팀 명단"
-            className="bg-pink-600 w-2/5 h-64 float-right rounded-3xl overflow-y-auto mx-16"
-          >
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[5].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[6].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[7].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[8].gameId}
-            </div>
-            <div className="bg-gray-600 h-20 mx-10 my-3 rounded-2xl">
-              {ptpgame[9].gameId}
+            <div
+              id="2팀 명단"
+              className="bg-red-500 w-2/5 h-64 float-right rounded-3xl overflow-y-auto mx-16"
+            >
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[5].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[6].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[7].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[8].playerAddress}
+              </div>
+              <div className="bg-gray-600 h-12 mx-10 rounded-2xl px-2 pt-4 my-1 overflow-hidden">
+                {game.playerList[9].playerAddress}
+              </div>
             </div>
           </div>
         </div>
 
-        <div
-          id="상금 및 베팅 정보, 확인 및 나가기 버튼 container"
-          className="h-320"
-        >
-          <div id="상금 정보" className="h-full mx-16">
+        <div id="상금 및 베팅 정보, 확인 및 나가기 버튼 container flex-col">
+          <div id="상금 정보" className=" mx-16 pt-4">
             <div type="bar" className={Mainbarstyles.bar}>
               <div type="bar" className={InfobarStyle.bar}>
-                <div>상금: (prize)</div>
+                <div>상금: {game.prize} ETH</div>
+                <div>베팅 단위: {game.betFeeAmount} ETH</div>
               </div>
             </div>
           </div>
 
+          {/* 베팅 이벤트 - 버튼 클릭 시 작동하도록 */}
           <div id="베팅 정보" className=" mx-16 py-3">
-            <div className="bg-black w-2/5 h-12 float-left rounded-2xl pl-4 items-center flex">
-              1팀 베팅액: (betting1)
-              <button className="bg-blue-300 items-center flex rounded-full ml-48">
-                1팀 베팅취소
-              </button>
-            </div>
-            <div className="bg-black w-2/5 h-12 float-right rounded-2xl pl-4 items-center flex">
-              2팀 베팅액: (betting2)
-              <button className="bg-pink-300 items-center flex rounded-full ml-48">
-                2팀 베팅취소
-              </button>
-            </div>
-          </div>
-
-          {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
-          <div className="w-1/2 h-20 float-left">
-            <div className="p-10 h-full">
-              <div className="w-full text-center">
-                <Link href={'./partificpaing-now'}>
-                  <div className={`${Buttonstyle.btncyan} ${'w-1/3'}`}>
-                    확인
-                  </div>
-                </Link>
+            <div className="flex flex-col">
+              <div className="flex flex-row item-center">
+                <div className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex">
+                  <p>1팀 베팅 총액: (betting1) ETH</p>
+                </div>
+                <div className="w-1/5"></div>
+                <div className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex">
+                  <p>2팀 베팅 총액: (betting2) ETH</p>
+                </div>
+              </div>
+              <div id="베팅 정보" className=" mx-16 py-3 flex flex-row">
+                <div className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex">
+                  1팀 베팅액: (betting1)
+                  <button className="bg-blue-400 items-center p-2 flex rounded-full">
+                    1팀 베팅취소
+                  </button>
+                </div>
+                <div className="w-1/4"></div>
+                <div className="bg-black w-2/5 h-12 rounded-2xl pl-4 items-center flex">
+                  2팀 베팅액: (betting2)
+                  <button className="bg-blue-400 items-center p-2 flex rounded-full">
+                    2팀 베팅취소
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="w-1/2 h-20 float-left">
-            <div className="p-10 h-full">
-              <div className="w-full text-center">
-                {/* delete 기능 구현 */}
-                <Link href={'./participating-now'}>
-                  <div className={`${Buttonstyle.btnred} ${'w-1/3'}`}>
-                    게임나가기
-                  </div>
-                </Link>
-              </div>
+        {/* 확인 누르면 원래 homepage(임시로, temphome)으로 이동하도록 설정 */}
+        <div className="w-full h-18 float-left">
+          <div className="p-4 h-2/3">
+            <div className="w-full text-center">
+              <Link href={'/'}>
+                <div className={`${Buttonstyle.btncyan} ${'w-1/5'}`}>확인</div>
+              </Link>
             </div>
           </div>
         </div>

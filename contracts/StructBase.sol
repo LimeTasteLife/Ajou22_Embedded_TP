@@ -28,9 +28,9 @@ contract StructBase {
         //게임 식별용 고유 Id
         string gameName;
         //게임 제목
-        uint8 startAt;
+        uint256 startAt;
         //시작 시간(공지용), 게임을 시작할 때 새로 갱신
-        uint8 finishAt;
+        uint256 finishAt;
         //종료 시간(공지용), 게임을 종료할 때 새로 갱신
         uint64 prize;
         //주최자가 직접 넣는 상금

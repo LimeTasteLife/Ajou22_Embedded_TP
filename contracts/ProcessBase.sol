@@ -2,9 +2,11 @@
 pragma solidity ^0.8.4;
 
 import "./StructBase.sol";
+import "./APIConsumer.sol";
+import "./WinnerGet.sol";
 
 contract ProcessBase is StructBase {
-    event Registration(address eos, string _gameId);
+    event Registration(address eos, uint256 _gameId);
     event MakeGame(uint256 _gameId, uint256 _startAt, uint256 _finishAt);
     event StartGame(uint256 _gameId);
     event CancelGame(uint256 _gameId);
@@ -97,7 +99,7 @@ contract GameProcess is ProcessBase {
         //게임의 Betting을 종료시키고 게임을 onAir상태로 변환
         //실행한 시간의 timestamp를 startAt에 저장
 
-        gameList[uint64(_gameId)].startAt = uint8(block.timestamp);
+        gameList[uint64(_gameId)].startAt = block.timestamp;
         gameList[uint64(_gameId)].gameStatus = GameStatus.OnAir;
         emit StartGame(_gameId);
     }
@@ -106,7 +108,7 @@ contract GameProcess is ProcessBase {
         //게임을 종료시키고 Closed 상태로 바꿈, finishAt에 현재 timestamp 저장
         //상금, 베팅금액 배분
 
-        gameList[uint64(_gameId)].finishAt = uint8(block.timestamp);
+        gameList[uint64(_gameId)].finishAt = block.timestamp;
         gameList[uint64(_gameId)].gameStatus = GameStatus.Closed;
         //whoIsWinner(_gameId);
 
@@ -254,22 +256,17 @@ contract GameProcess is ProcessBase {
         delete gameList[uint64(_gameId)];
     }
 
-    /*function whoIsWinner(uint256 _gameId) private {
-        Game _game = getGameData(_gameId);
-        uint requestId = createRequest();
-        uint result = getRequestResult(requestId);
-        uint random = 0;
-        while(result != 0){
-            random += result % 10;
-            result = uint(result / 10);
-        }
-        if(random % 2 == 0){
-            _game.winner = 1;
-        }
-        else{
-            _game.winner = 2;
-        }
-    }*/
+    function whoIsWinner(uint256 _gameId) internal {
+        uint requestId = winnerCreateRequest(_gameId);
+        string memory result = getWinnerRequestResult(requestId);
+
+        gameList[uint64(_gameId)].winner = uint8(result[0]);
+    }
+
+    function getAuthId(string memory userId) internal {
+        uint requiestId = authCreateRequest(userId);
+        return getAuthRequestResult(requiestId);
+    }
 
     /////////////////////////
     //      테스트용        //

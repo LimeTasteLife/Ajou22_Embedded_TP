@@ -2,6 +2,16 @@ const hre = require('hardhat');
 const fs = require('fs');
 
 async function main() {
+  const APIConsumer = await hre.ethers.getContractFactory('APIConsumer');
+  const apiConsumer = await APIConsumer.deploy();
+  await apiConsumer.deployed();
+  console.log('APIConsumer contract deployed to:', apiConsumer.address);
+
+  const WinnerGet = await hre.ethers.getContractFactory('WinnerGet');
+  const winnerGet = await WinnerGet.deploy();
+  await apiConsumer.deployed();
+  console.log('WinnerGet contract deployed to:', winnerGet.address);
+
   const StructBase = await hre.ethers.getContractFactory('StructBase');
   const structBase = await StructBase.deploy();
   await structBase.deployed();
@@ -25,6 +35,8 @@ async function main() {
   fs.writeFileSync(
     './config.js',
     `
+    export const apiConsumerAddress = "${apiConsumer.address}"
+    export const winnerGetAddress = "${winnerGet.address}"
     export const structBaseAddress = "${structBase.address}"
     export const processBaseAddress = "${processBase.address}"
     export const gameProcessAddress = "${gameProcess.address}"

@@ -14,7 +14,6 @@ import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json
 // 게임바(mainbar)를 클릭했을 때, 게임 정보를 받아와 표시해주는 페이지 - 게임참가/확인 기능 구현
 export default function Gameinformation({ props }) {
   const [game, setGame] = useState([]);
-  const [loadingState, setLoadingState] = useState('not-loaded');
   useEffect(() => {
     loadGame();
   }, [game]);
@@ -53,10 +52,79 @@ export default function Gameinformation({ props }) {
       betList: data.betList,
       totalBet: ethers.utils.formatUnits(data.totalBet.toString(), 'ether'),
     };
-    console.log(data);
-
     setGame(item);
-    setLoadingState('loaded');
+  }
+
+  async function deleteGame() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const transaction = await contract.cancelGame(game.gameId);
+    await transaction.wait();
+
+    router.replace('/');
+  }
+
+  async function end1() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const trx = await contract._closeJoin(game.gameId);
+    await trx.wait();
+
+    router.replace('/manage-game');
+  }
+
+  async function end2() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const trx = await contract._startGame(game.gameId);
+    await trx.wait();
+
+    router.replace('/manage-game');
+  }
+
+  async function end3() {
+    const web3Modal = new Web3Modal();
+    const connection = await web3Modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+
+    const contract = new ethers.Contract(
+      gameManagerAddress,
+      GameManager.abi,
+      signer
+    );
+
+    const trx = await contract._finishGame(game.gameId);
+    await trx.wait();
+
+    router.replace('/manage-game');
   }
 
   return (
@@ -140,14 +208,20 @@ export default function Gameinformation({ props }) {
         <div className="flex w-full" id="Game list Upper(옵션 - 역삼각형 클릭)">
           <button
             className="rounded-full bg-yellow-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold"
-            //onclick 이벤트 추가
+            onClick={end1}
           >
             참가 마감
           </button>
-          <button className="rounded-full bg-green-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold">
+          <button
+            className="rounded-full bg-green-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold"
+            onClick={end2}
+          >
             중간 마감
           </button>
-          <button className="rounded-full bg-blue-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold">
+          <button
+            className="rounded-full bg-blue-500 w-1/3 float-left p-3 text-center text-lg mx-10 mt-6 text-white font-semibold"
+            onClick={end3}
+          >
             베팅 마감
           </button>
         </div>
@@ -155,12 +229,12 @@ export default function Gameinformation({ props }) {
         <div>
           <div className="w-1/2  float-left p-10 h-full">
             <div className="w-auto text-center">
-              <Link href={'./manage-game'}>
-                <div className={`${Buttonstyle.btnred} ${'w-1/3'}`}>
-                  삭제하기
-                  {/* (관리 리스트에서 해당 게임 제거 설정할지 생각 X) */}
-                </div>
-              </Link>
+              <div
+                className={`${Buttonstyle.btnred} ${'w-1/3'}`}
+                onClick={deleteGame}
+              >
+                삭제하기
+              </div>
             </div>
           </div>
 

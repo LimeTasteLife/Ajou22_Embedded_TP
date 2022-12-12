@@ -67,8 +67,6 @@ export default function ManageGame({ props }) {
     });
   }
 
-  if (loadingState === 'not-loaded' || !mygames.length)
-    return <h1 className="px-20 py-10 text-3xl ">No game to manage</h1>;
   return (
     <div className="w-4/5 h-full items-center px-10">
       <div className="w-full h-20 ">
