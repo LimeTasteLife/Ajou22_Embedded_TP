@@ -47,8 +47,8 @@ export default function Home() {
         let item = {
           title: i.gameName,
           gameId: i.gameId,
-          startAt: i.startAt,
-          finishAt: i.finishAt,
+          startAt: i.startAt.toString(),
+          finishAt: i.finishAt.toString(),
           prize: prize,
           joinFeeAmount: joinAmount,
           betFeeAmount: betAmount,

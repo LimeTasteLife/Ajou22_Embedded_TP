@@ -41,8 +41,8 @@ export default function participatinginfor() {
     const item = {
       gameId: data.gameId,
       title: data.gameName,
-      startAt: data.startAt,
-      finishAt: data.finishAt,
+      startAt: data.startAt.toString(),
+      finishAt: data.finishAt.toString(),
       prize: ethers.utils.formatUnits(data.prize.toString(), 'ether'),
       joinFeeAmount: ethers.utils.formatUnits(
         data.joinAmount.toString(),

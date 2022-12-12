@@ -46,8 +46,8 @@ export default function Participatingnow({ props }) {
         let item = {
           title: i.gameName,
           gameId: i.gameId,
-          startAt: i.startAt,
-          finishAt: i.finishAt,
+          startAt: i.startAt.toString(),
+          finishAt: i.finishAt.toString(),
           prize: prize,
           joinFeeAmount: joinAmount,
           betFeeAmount: betAmount,
