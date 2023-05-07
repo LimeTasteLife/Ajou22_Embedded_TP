@@ -6,30 +6,35 @@ import { useRouter } from 'next/router';
 import { gameManagerAddress } from '../config';
 import GameManager from '../artifacts/contracts/GameManager.sol/GameManager.json';
 
-export default function myApp({ pageProps }) {
+export default function MyApp({ pageProps }) {
   const [formInput, updateFormInput] = useState({
     userId: '',
   });
   const router = useRouter();
 
   async function register() {
-    const web3Modal = new Web3Modal();
-    const connection = await web3Modal.connect();
-    const provider = new ethers.providers.Web3Provider(connection);
-    const signer = provider.getSigner();
+    try {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const provider = new ethers.providers.Web3Provider(connection);
+      const signer = provider.getSigner();
 
-    const contract = new ethers.Contract(
-      gameManagerAddress,
-      GameManager.abi,
-      signer
-    );
+      const contract = new ethers.Contract(
+        gameManagerAddress,
+        GameManager.abi,
+        signer
+      );
 
-    console.log(formInput.userId);
-    let transaction = await contract.registration(parseInt(formInput.userId));
-    // registration 중복은 어떻게 해결할까?
-    await transaction.wait();
+      console.log(formInput.userId);
+      let transaction = await contract.registration(parseInt(formInput.userId));
+      // registration 중복은 어떻게 해결할까?
+      await transaction.wait();
 
-    router.replace('/');
+      router.replace('/');
+    } catch (error) {
+      console.log(error);
+      router.back();
+    }
   }
 
   return (

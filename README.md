@@ -41,7 +41,7 @@ npx hardhat node
 - deploy your contract
 
 ```
-npx hardhat run scripts/deploy.js --network localhost
+npx hardhat run scripts/pro_deploy.js --network localhost
 ```
 
 - run the project
